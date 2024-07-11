@@ -18,7 +18,10 @@ def split_numbers(numbers: str, delimiter: str) -> list:
 
 
 def sum_valid_numbers(num_list: list) -> int:
-    return sum(int(num) for num in num_list if num.isdigit() and int(num) <= 1000)
+    def is_valid(num):
+        return num.isdigit() and int(num) <= 1000
+    
+    return sum(int(num) for num in num_list if is_valid(num))
 
 
 
