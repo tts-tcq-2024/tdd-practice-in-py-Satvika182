@@ -1,13 +1,9 @@
 def add(numbers: str) -> int:
-    if not numbers:
-        return 0
-    
     delimiter = ','
+    numbers_part = numbers
     
     if numbers.startswith('//'):
-        delimiter, numbers = numbers[2:].split('\n', 1)
-    
-    numbers = numbers.replace('\n', delimiter)
-    num_list = numbers.split(delimiter)
-    
-    return sum(int(num) for num in num_list if int(num) <= 1000)
+        delimiter, numbers_part = numbers[2:].split('\n', 1)
+        
+    all_numbers = numbers_part.replace('\n', delimiter).split(delimiter)
+    return sum(int(num) for num in all_numbers if num and int(num) <= 1000)
