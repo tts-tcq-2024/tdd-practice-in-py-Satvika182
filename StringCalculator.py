@@ -3,8 +3,11 @@ def add(numbers: str) -> int:
         return 0
     
     delimiter = ','
-    if numbers.startswith('//'):
-        delimiter, numbers = re.split('\n', numbers[2:], 1)
     
-    num_list = re.split(f'[{re.escape(delimiter)}\n]', numbers)
+    if numbers.startswith('//'):
+        delimiter, numbers = numbers[2:].split('\n', 1)
+    
+    numbers = numbers.replace('\n', delimiter)
+    num_list = numbers.split(delimiter)
+    
     return sum(int(num) for num in num_list if int(num) <= 1000)
